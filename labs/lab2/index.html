@@ -515,7 +515,7 @@
   <a href="#5-register-a-kudu-catalog" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Register a Kudu catalog
+        5. Register a Kudu catalog (SKIP THIS)
       
     </span>
   </a>
@@ -745,7 +745,7 @@
   <a href="#5-register-a-kudu-catalog" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Register a Kudu catalog
+        5. Register a Kudu catalog (SKIP THIS)
       
     </span>
   </a>
@@ -963,7 +963,7 @@
 </tr>
 <tr>
 <td>Brokers</td>
-<td><strong><code>&lt;broker1&gt;:9093,&lt;broker2&gt;:9093,&lt;broker3&gt;:9093</code></strong> <em>(see screenshot below for the instruction)</em></td>
+<td><strong><code>cdf-kafka-lab-corebroker2.nonprod.c2is-uy02.cloudera.site:9093,cdf-kafka-lab-corebroker1.nonprod.c2is-uy02.cloudera.site:9093,cdf-kafka-lab-corebroker0.nonprod.c2is-uy02.cloudera.site:9093</code></strong> <em>(FYI: see screenshot below for the instruction)</em></td>
 </tr>
 <tr>
 <td>Protocol</td>
@@ -1025,7 +1025,7 @@
 </tr>
 <tr>
 <td>Schema Registry URL</td>
-<td><strong><code>https://&lt;schreg_hostname&gt;:7790/api/v1</code></strong> <em>(Find the Schema Hostname in the SMM Datahub under the Nodes tab)</em></td>
+<td><strong><code>https://cdf-kafka-lab-master0.nonprod.c2is-uy02.cloudera.site:7790/api/v1</code></strong> <em>(FYI: find the Schema Hostname in the SMM Datahub under the Nodes tab)</em></td>
 </tr>
 </tbody>
 </table>
@@ -1039,7 +1039,7 @@
 <p>Once the catalog is validated. Press the <strong>Create</strong> button to register the Schema Registry catalog.  </p>
 </li>
 </ol>
-<h2 id="5-register-a-kudu-catalog"><strong>5. Register a Kudu catalog</strong></h2>
+<h2 id="5-register-a-kudu-catalog"><strong>5. Register a Kudu catalog (SKIP THIS)</strong></h2>
 <p>Similar to a Schema Registry catalog, a Kudu catalog makes Kudu tables automatically available for use in SSB, simplifying the process of mapping Virtual Tables to the actual Kudu ones. In this section you will register the DataHub Kudu cluster as a catalog in your SSB project.</p>
 <p>This will make the <strong>syslog_severity</strong> table, which has already been created in Kudu, available for queries in SSB.</p>
 <ol>
@@ -1166,7 +1166,7 @@
 <li>Each record read from Kafka by SSB has an associated timestamp column of data type TIMESTAMP ROWTIME. By default, this timestamp is sourced from the internal timestamp of the Kafka message and is exposed through a column called eventTimestamp. </li>
 </ol>
 <p>However, if your message payload already contains a timestamp associated with the event (event time), you may want to use that instead of the Kafka internal timestamp.</p>
-<p>In this case, the syslog message has a field called "<strong>timestamp</strong>" that contains the timestamp you should use. You want to expose this field as the table's "<strong>event_time</strong>" column. To do this, click on the <strong>Event Time</strong> tab and enter the following properties:</p>
+<p>In this case, the syslog message has a field called "<strong>timestamp</strong>" that contains the timestamp you should use. You want to expose this field as the table's "<strong>event_time</strong>" column. To do this, click on the <strong>Event Time</strong> tab and disable the "<strong>Use Kafka Timestamp</strong>" toggle button. Enter the following properties:</p>
 <table>
 <thead>
 <tr>
@@ -1399,7 +1399,7 @@ SSB makes it really easy to write data to different locations. All you have to d
 </ol>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>'connector' = 'upsert-kafka',
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>'key.format' = 'json',
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>'properties.bootstrap.servers' = '&lt;broker1&gt;:9093,&lt;broker2&gt;:9093,&lt;broker3&gt;:9093',
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>'properties.bootstrap.servers' = 'cdf-kafka-lab-corebroker2.nonprod.c2is-uy02.cloudera.site:9093,cdf-kafka-lab-corebroker1.nonprod.c2is-uy02.cloudera.site:9093,cdf-kafka-lab-corebroker0.nonprod.c2is-uy02.cloudera.site:9093',
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>'topic' = 'USERNAME-severity-counts',
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>'value.format' = 'json'
 </span></code></pre></div>
